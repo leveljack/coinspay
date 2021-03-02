@@ -14,7 +14,7 @@ logger.level = require("../../config").logLevel;
 let queryUrl = "https://apilist.tronscan.org/api/account?address=";
 
 
-module.exports = class USDT_TRX extends Address {
+module.exports = class USDT_TRC20 extends Address {
     // constructor(register) {
     //     super(register);
     //     // this.tryDuration = [5];// for test
