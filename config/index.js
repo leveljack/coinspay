@@ -6,7 +6,7 @@ module.exports = {
 
     support_coins: ["USDT_TRC20", "BTC"],
     entity: {
-        USDT_TRX: {
+        USDT_TRC20: {
             name: "USDT_TRC20",
             unit: "USDT",
             label: "USDT - （手续费低、到账快）",
