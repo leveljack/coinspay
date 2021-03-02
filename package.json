@@ -1,0 +1,63 @@
+{
+  "name": "pay",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "base-x": "^3.0.8",
+    "bip32": "^2.0.6",
+    "body-parser": "^1.19.0",
+    "clipboard": "^2.0.6",
+    "coininfo": "^5.1.0",
+    "coinstring": "^2.3.0",
+    "core-js": "^3.6.5",
+    "crypto": "^1.0.1",
+    "element-ui": "^2.4.5",
+    "ethereumjs-util": "^7.0.8",
+    "keyv": "^4.0.3",
+    "log4js": "^6.3.0",
+    "merge": "^2.1.1",
+    "qrcodejs2": "^0.0.2",
+    "randombytes": "^2.1.0",
+    "vue": "^2.6.11",
+    "vue-clipboard2": "^0.3.1"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "babel-eslint": "^10.1.0",
+    "babel-plugin-component": "^1.1.1",
+    "blakejs": "^1.1.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^6.2.2",
+    "jsbn": "^1.1.0",
+    "jssha": "^3.2.0",
+    "vue-cli-plugin-element": "~1.0.1",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}
