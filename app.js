@@ -26,7 +26,7 @@ app.get('/address', function (req, res) {
   index = index || 0;
   amount = amount || 1;
 
-  index = index & 0xffffffff
+  index = index & 0xffffffff;
 
 
   ret = {
