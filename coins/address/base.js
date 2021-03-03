@@ -48,7 +48,7 @@ module.exports = class Address {
         item.amount = total;
         let price = rate.getPrice(this.entity.unit);
         item.rate = price;
-        item.request_balance = (total / price).toFixed(getFixed(price));
+        item.request_balance = parseFloat((total / price).toFixed(getFixed(price)));
         item.index = index;
         item.token = require("crypto").createHash("sha256").update(this.entity.name + index + total).digest("hex");
 
