@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({
 	extended: false
 }));
 
-app.get('/address', function (req, res) {
+app.get('/address', async function (req, res) {
   let index = req.query.index;
   let amount = req.query.amount;
 
@@ -33,7 +33,7 @@ app.get('/address', function (req, res) {
     coins: {},
     error: 0
   };
-  ret.coins = coins.getAddressByIndexWithAmount(index, amount);
+  ret.coins = await coins.getAddress(index, amount);
   res.send(JSON.stringify(ret));
 });
 

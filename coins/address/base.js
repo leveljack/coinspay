@@ -41,19 +41,22 @@ module.exports = class Address {
         register = register || {};
         config.support_coins.includes(this.entity.name) && (register[this.entity.name] = this)
     }
-    getAddressByIndexWithAmount(index, total) {
+    getAddressByIndexWithAmount(index, total, balance) {
+        balance = balance || 0;
         let ret = {};
-        let item = ret[this.entity.name] = merge({}, this.entity);
+        let item = merge({}, this.entity);
         item.address = this.getAddressByPublicKey(this.getPublicKeyByIndex(index));
         item.amount = total;
         let price = rate.getPrice(this.entity.unit);
         item.rate = price;
         item.request_balance = parseFloat((total / price).toFixed(getFixed(price)));
+        item.balance = balance;
         item.index = index;
         item.token = require("crypto").createHash("sha256").update(this.entity.name + index + total).digest("hex");
 
 
         keyv.set(item.token, item, 45 * 60 * 1000);
+        ret[this.entity.name] = this.getOriginData(item);
         return ret;
 
     }
@@ -113,11 +116,11 @@ module.exports = class Address {
         return {
             name: data.name,
             address: data.address,
-            index: data.index,
-            amount: data.amount
+            label: data.label,
+            amount: data.amount,
+            request_balance: data.request_balance,
+            network: data.network,
+            token: data.token
         }
-    }
-    getTimeByCount(count) {
-
     }
 }
