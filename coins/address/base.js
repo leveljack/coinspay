@@ -42,18 +42,19 @@ module.exports = class Address {
         register = register || {};
         config.support_coins.includes(this.entity.name) && (register[this.entity.name] = this)
     }
-    getAddressByIndexWithAmount(index, total, balance) {
+    getAddress(order_id, amount, index, balance) {
         balance = balance || 0;
         let ret = {};
         let item = merge({}, this.entity);
+        item.index = index;
+        item.order_id = order_id;
+        item.balance = balance;
         item.address = this.getAddressByPublicKey(this.getPublicKeyByIndex(index));
-        item.amount = total;
+        item.amount = amount;
         let price = rate.getPrice(this.entity.unit);
         item.rate = price;
-        item.request_balance = parseFloat((total / price).toFixed(getFixed(price)));
-        item.balance = balance;
-        item.index = index;
-        item.token = require("crypto").createHash("sha256").update(this.entity.name + index + total).digest("hex");
+        item.request_balance = parseFloat((amount / price).toFixed(getFixed(price)));
+        item.token = require("crypto").createHash("sha256").update(this.entity.name + index + amount).digest("hex");
 
 
         keyv.set(item.token, item, 45 * 60 * 1000);
@@ -78,15 +79,15 @@ module.exports = class Address {
         let current_id = await keyv.get(data.token + "_id");
         if (current_id != id) {
             // console.log("cancel confirm " + JSON.stringify(data) + " at " + time + " times");
-            logger.debug("cancel confirm " + JSON.stringify(this.getOriginData(data)) + " at " + time + " times");
+            logger.debug("cancel confirm " + JSON.stringify(this.getDebugData(data)) + " at " + time + " times");
             return;
         }
         let that = this;
         if (time >= this.tryTimes) {
-            logger.debug("failed confirm " + JSON.stringify(this.getOriginData(data)) + " after " + this.tryTimes + " times");
+            logger.debug("failed confirm " + JSON.stringify(this.getDebugData(data)) + " after " + this.tryTimes + " times");
             return;
         }
-        logger.debug("start confirm for " + JSON.stringify(this.getOriginData(data)) + " at " + time + " times");
+        logger.debug("start confirm for " + JSON.stringify(this.getDebugData(data)) + " at " + time + " times");
         setTimeout(function () {
             new Promise(function (resolve, reject) {
                 that.crondJob(data, resolve, reject);
@@ -123,6 +124,15 @@ module.exports = class Address {
             request_balance: data.request_balance,
             network: data.network,
             token: data.token
+        }
+    }
+    getDebugData(data) {
+        return {
+            order_id: data.order_id,
+            amount: data.amount,
+            index: data.index,
+            name: data.name,
+            address: data.address
         }
     }
 }

@@ -20,7 +20,7 @@ module.exports = {
         let ret = {}
         for (const coin in coinsmap) {
             const element = coinsmap[coin];
-            merge(ret, element.getAddressByIndexWithAmount(account.index, amount, account.balance[coin]));
+            merge(ret, element.getAddress(order_id, amount, account.index, account.balance[coin]));
         }
         return ret;
 
