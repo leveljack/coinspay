@@ -4,6 +4,7 @@ const Keyv = require('keyv');
 const keyv = new Keyv();
 const config = require("../../config");
 const merge = require("merge");
+const model = require("../../model");
 
 const rate = require("../../config/rate");
 const { default: axios } = require("axios");
@@ -101,6 +102,7 @@ module.exports = class Address {
     }
     callback(data) {
         logger.info("send callback " + JSON.stringify(data));
+        model.updateOrder(data);
         if (config.callbackUrl) {
             axios.post(config.callbackUrl, data).then(function (res) {
 

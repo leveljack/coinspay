@@ -15,14 +15,6 @@ for(let i =0;i < config.support_coins.length;i++) {
 
 
 module.exports = {
-    getAddressByIndexWithAmount(index, amount) {
-        let ret = {}
-        for (const coin in coinsmap) {
-            const element = coinsmap[coin];
-            merge(ret, element.getAddressByIndexWithAmount(index, amount));
-        }
-        return ret;
-    },
     async getAddress(order_id, amount) {
         let account = await model.getIndex(order_id, amount);
         let ret = {}

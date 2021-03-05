@@ -6,3 +6,7 @@ module.exports.getIndex = async function (order_id, amount) {
         }
     }
 }
+
+module.exports.updateOrder = function (data) {
+    
+}
