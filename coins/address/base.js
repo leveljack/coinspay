@@ -120,6 +120,7 @@ module.exports = class Address {
             name: data.name,
             address: data.address,
             label: data.label,
+            unit: data.unit,
             amount: data.amount,
             request_balance: data.request_balance,
             network: data.network,
