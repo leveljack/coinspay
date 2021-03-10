@@ -1,6 +1,8 @@
 const wallet = require("./wallet");
+const fs = require("fs");
 
 let mywallet = wallet.generateWallet();
+let confPath = "./config/index.js";
 
 console.log("");
 console.log("     seed: ", mywallet.seed.toString("hex"));
@@ -8,6 +10,13 @@ console.log("");
 console.log("      pub: ", mywallet.publicKey.toString("hex"))
 console.log("");
 console.log("chainCode: ", mywallet.chainCode.toString("hex"))
+
+
+let confStr = fs.readFileSync(confPath).toString();
+confStr = confStr.replace(/publicKey: ".*"/, 'publicKey: "' + mywallet.publicKey.toString("hex") + '"');
+confStr = confStr.replace(/chainCode: ".*"/, 'chainCode: "' + mywallet.chainCode.toString("hex") + '"');
+fs.writeFileSync(confPath, confStr);
+
 return;
 
 

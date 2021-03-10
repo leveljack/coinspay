@@ -11,13 +11,11 @@ npm install //安装项目依赖
 npm run build //构建项目
 ```
 ## 运行项目
-运行前需先生成自己的数字钱包，把生成的publicKey和chainCode保存到config/index.js相应配置项下，seed（非常重要，不能丢失）则保存到自己的电脑
+运行前需先生成自己的数字钱包，把生成的seed（非常重要，不能丢失）保存到自己的电脑
 ```
 node generate.js
-```
-运行项目
-```
 node app //后台长期运行，可以执行 nohup node app 2>&1 & 
+```pp //后台长期运行，可以执行 nohup node app 2>&1 & 
 ```
 浏览器访问：[http://127.0.0.1:3000](http://127.0.0.1:3000)
 
