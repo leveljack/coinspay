@@ -15,7 +15,6 @@ npm run build //构建项目
 ```
 node generate.js
 node app //后台长期运行，可以执行 nohup node app 2>&1 & 
-```pp //后台长期运行，可以执行 nohup node app 2>&1 & 
 ```
 浏览器访问：[http://127.0.0.1:3000](http://127.0.0.1:3000)
 
