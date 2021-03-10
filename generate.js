@@ -6,10 +6,10 @@ let confPath = "./config/index.js";
 
 console.log("");
 console.log("     seed: ", mywallet.seed.toString("hex"));
-console.log("");
-console.log("      pub: ", mywallet.publicKey.toString("hex"))
-console.log("");
-console.log("chainCode: ", mywallet.chainCode.toString("hex"))
+// console.log("");
+// console.log("      pub: ", mywallet.publicKey.toString("hex"))
+// console.log("");
+// console.log("chainCode: ", mywallet.chainCode.toString("hex"))
 
 
 let confStr = fs.readFileSync(confPath).toString();
