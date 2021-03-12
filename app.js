@@ -20,20 +20,20 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.get('/address', async function (req, res) {
-  let index = req.query.index;
+  let order_id = req.query.order_id;
   let amount = req.query.amount;
 
-  index = index || 0;
+  order_id = order_id || 0;
   amount = amount || 1;
 
-  index = index & 0xffffffff
+  order_id = order_id & 0xffffffff
 
 
   ret = {
     coins: {},
     error: 0
   };
-  ret.coins = await coins.getAddress(index, amount);
+  ret.coins = await coins.getAddress(order_id, amount);
   res.send(JSON.stringify(ret));
 });
 
