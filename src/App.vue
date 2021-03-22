@@ -97,7 +97,7 @@ export default {
       let that = this;
       // this.qrcode()
       let params = "?env=production";
-      params +=  getQueryString("order_id") ? "&order_id=" + getQueryString("index") : "";
+      params +=  getQueryString("order_id") ? "&order_id=" + getQueryString("order_id") : "";
       params +=  getQueryString("amount") ? "&amount=" + getQueryString("amount") : "";
       axios.get("/address" + params).then(function (response) {
         console.log(response.data);
