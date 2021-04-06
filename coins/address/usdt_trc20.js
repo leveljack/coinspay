@@ -36,14 +36,15 @@ module.exports = class USDT_TRC20 extends Address {
         return bs58.encode(trxAddress);
     }
     crondJob(req, resolve, reject) {
-        let balance = req.request_balance;
+        let request_balance = req.request_balance;
+        let balance = req.balance;
         axios.get(queryUrl + req.address).then(function (res) {
             logger.info("receive trx data: " + JSON.stringify(res.data.tokens) );
             for(let i = 0;i < res.data.tokens.length;i ++) {
                 let item = res.data.tokens[i];
                 if (item.tokenAbbr == "USDT") {
                     let receive_balance = item.balance / 10 ** 6;
-                    if (receive_balance >= balance) {
+                    if (receive_balance >= balance + request_balance) {
                         req.receive_balance = receive_balance;
                         resolve();
                         return;
