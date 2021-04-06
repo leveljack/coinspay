@@ -25,10 +25,11 @@ module.exports= class BTC extends Address {
         return address;
     }
     crondJob(req, resolve, reject) {
-        let balance = req.request_balance;
+        let request_balance = req.request_balance;
+        let balance = req.balance;
         axios.get(queryUrl + req.address).then(function (res) {
             logger.info("receive btc data: " + JSON.stringify(res.data));
-            if (balance <  res.data[req.address].final_balance) {
+            if ((balance + request_balance) * 10**8 <=  res.data[req.address].final_balance) {
                 req.receive_balance = res.data[req.address].final_balance / 10**8;
                 resolve();
             }
